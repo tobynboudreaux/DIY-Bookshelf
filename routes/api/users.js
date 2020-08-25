@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const User = require("../../models/User");
 
+// @route           POST api/users
+// @description     Register new user
+// @access          Public
 router.post(
   "/",
   [
@@ -45,7 +48,7 @@ router.post(
 
       user.password = await bcrypt.hash(password, salt);
 
-      await user.save;
+      await user.save();
 
       // Return jsonwebtoken
       const payload = {
