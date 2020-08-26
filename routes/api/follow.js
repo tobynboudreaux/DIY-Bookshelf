@@ -36,8 +36,8 @@ router.put("/user/:id", [auth], async (req, res) => {
   }
 });
 
-// @route           PUT api/follow/user/:id
-// @description     Follow another User
+// @route           PUT api/follow/unfollow/:id
+// @description     Unfollow another User
 // @access          Private
 router.put("/unfollow/:id", [auth], async (req, res) => {
   try {
