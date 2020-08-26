@@ -1,24 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+const PostSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+  },
+  text: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
   },
   avatar: {
     type: String,
   },
-  followers: [
+  likes: [
     {
       user: {
         type: Schema.Types.ObjectId,
@@ -26,11 +24,25 @@ const UserSchema = new mongoose.Schema({
       },
     },
   ],
-  followees: [
+  comments: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: "users",
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      name: {
+        type: String,
+      },
+      avatar: {
+        type: String,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
       },
     },
   ],
@@ -40,4 +52,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = User = mongoose.model("user", UserSchema);
+module.exports = Post = mongoose.model("Post", PostSchema);
