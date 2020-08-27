@@ -23,7 +23,7 @@ router.get("/", auth, async (req, res) => {
 
 // @route           POST api/auth
 // @description     Login/authenticate User
-// @access          Publi
+// @access          Public
 router.post(
   "/",
   [
