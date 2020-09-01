@@ -44,6 +44,7 @@ const ProfileSchema = new mongoose.Schema({
           },
           post: {
             type: Schema.Types.ObjectId,
+            ref: "post",
           },
         },
       ],

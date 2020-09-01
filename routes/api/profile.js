@@ -220,10 +220,14 @@ router.delete("/boards/:board_id", [auth], async (req, res) => {
 router.put("/boards/:board_id/:post_id", [auth], async (req, res) => {
   const { section, note } = req.body;
 
+  const post = await Post.findOne({ _id: req.params.post_id });
+
   const newSavedPost = {
     section,
     note,
   };
+
+  newSavedPost.post_obj = post;
 
   newSavedPost.post = req.params.post_id;
 

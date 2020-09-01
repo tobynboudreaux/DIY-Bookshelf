@@ -29,7 +29,7 @@ router.put("/user/:id", [auth], async (req, res) => {
     await follower.save();
     await followee.save();
 
-    res.json(followee.followers);
+    res.json(follower);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -69,7 +69,7 @@ router.put("/unfollow/:id", [auth], async (req, res) => {
     await followee.save();
     await follower.save();
 
-    res.json(followee.followers);
+    res.json(follower);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

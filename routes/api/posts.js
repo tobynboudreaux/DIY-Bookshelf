@@ -11,7 +11,16 @@ const User = require("../../models/User");
 // @access          Private
 router.post(
   "/",
-  [auth, [check("text", "Text is required").not().isEmpty()]],
+  [
+    auth,
+    [
+      check("text", "Text is required").not().isEmpty(),
+      check("title", "Title is required").not().isEmpty(),
+      check("image", "Image is required").not().isEmpty(),
+      check("tools", "Tools is required").not().isEmpty(),
+      check("materials", "Materials is required").not().isEmpty(),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -23,6 +32,10 @@ router.post(
 
       const newPost = new Post({
         text: req.body.text,
+        title: req.body.title,
+        image: req.body.image,
+        tools: req.body.tools,
+        materials: req.body.materials,
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
@@ -229,4 +242,75 @@ router.delete("/comment/:id/:comment_id", [auth], async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// @route           Put api/posts/:id/instructions
+// @description     Add instructions to Post
+// @access          Private
+router.put(
+  "/:id/instructions",
+  [
+    auth,
+    [
+      check("title", "Title is required").not().isEmpty(),
+      check("directions", "Directions is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { title, directions, image } = req.body;
+
+    const newInst = {
+      title,
+      directions,
+      image,
+    };
+
+    try {
+      const post = await Post.findById(req.params.id);
+
+      post.instructions.push(newInst);
+
+      await post.save();
+
+      res.json(post);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route           Delete api/posts/instructions/:id
+// @description     Delete Instructions
+// @access          Private
+router.delete("/:id/instructions/:inst_id", [auth], async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    const inst = post.instructions.find(
+      (instruction) => instruction.id === req.params.inst_id
+    );
+
+    if (!inst) {
+      return res.status(404).json({ msg: "Instruction not found" });
+    }
+
+    // Get remove index
+    const removeIndex = post.instructions.indexOf(inst._id);
+
+    post.instructions.splice(removeIndex, 1);
+
+    await post.save();
+
+    res.json(post);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
