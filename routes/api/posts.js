@@ -16,9 +16,6 @@ router.post(
     [
       check("text", "Text is required").not().isEmpty(),
       check("title", "Title is required").not().isEmpty(),
-      check("image", "Image is required").not().isEmpty(),
-      check("tools", "Tools is required").not().isEmpty(),
-      check("materials", "Materials is required").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -276,7 +273,7 @@ router.put(
 
       await post.save();
 
-      res.json(post);
+      res.json(post.instructions);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");

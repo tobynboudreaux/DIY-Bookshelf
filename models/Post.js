@@ -16,15 +16,12 @@ const PostSchema = new Schema({
   },
   image: {
     type: String,
-    required: true,
   },
   materials: {
     type: String,
-    required: true,
   },
   tools: {
     type: String,
-    required: true,
   },
   instructions: [
     {
