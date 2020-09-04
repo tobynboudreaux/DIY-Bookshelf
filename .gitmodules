@@ -1,0 +1,4 @@
+[submodule "DIYB-APP"]
+	path = DIYB-APP
+	url = git@github.com:tobynboudreaux/DIYB-APP.git
+	git submodule update
