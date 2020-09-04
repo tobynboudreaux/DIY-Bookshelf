@@ -11,8 +11,6 @@ connectDB();
 // Init middleware
 app.use(cors(), express.json({ extended: false }));
 
-app.get("/", (req, res) => res.send("API Running"));
-
 // Define routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
@@ -23,10 +21,10 @@ app.use("/api/profile", require("./routes/api/profile"));
 // Serve Static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static("client/build"));
+  app.use(express.static("diyb-app/build"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "diyb-app", "build", "index.html"));
   });
 }
 

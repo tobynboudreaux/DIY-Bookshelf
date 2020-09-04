@@ -8,7 +8,7 @@
     "server": "nodemon server",
     "client": "npm start --prefix diyb-app",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix diyb-app && npm run build --prefix diyb-app"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/tobynboudreaux/DIYB-API#readme",
   "dependencies": {
+    "@tensorflow/tfjs-node": "^2.3.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
     "cors": "^2.8.5",
@@ -30,6 +31,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.0",
     "request": "^2.88.2",
+    "socket.io": "^2.3.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
