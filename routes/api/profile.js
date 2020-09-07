@@ -39,7 +39,7 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const {
@@ -65,7 +65,7 @@ router.post(
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
+      profileFields.skills = skills.join(", ");
     }
 
     // Build social object
