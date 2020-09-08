@@ -65,7 +65,7 @@ router.post(
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (skills) {
-      profileFields.skills = skills.join(", ");
+      profileFields.skills = skills;
     }
 
     // Build social object
