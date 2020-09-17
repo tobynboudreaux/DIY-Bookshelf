@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../utils/api";
 import { setAlert } from "./alert";
 import {
   GET_POSTS,
@@ -18,7 +18,7 @@ import {
 // Get posts
 export const getPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/posts");
+    const res = await api.get("/posts");
 
     dispatch({
       type: GET_POSTS,
@@ -35,7 +35,7 @@ export const getPosts = () => async (dispatch) => {
 // Get post by id
 export const getPostById = (postID) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/posts/${postID}`);
+    const res = await api.get(`/posts/${postID}`);
 
     dispatch({
       type: GET_POST,
@@ -52,7 +52,7 @@ export const getPostById = (postID) => async (dispatch) => {
 // Add Like
 export const addLike = (postID) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/posts/like/${postID}`);
+    const res = await api.put(`/posts/like/${postID}`);
 
     dispatch({
       type: UPDATE_LIKES,
@@ -69,7 +69,7 @@ export const addLike = (postID) => async (dispatch) => {
 // Unlike
 export const unLike = (postID) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/posts/unlike/${postID}`);
+    const res = await api.put(`/posts/unlike/${postID}`);
 
     dispatch({
       type: UPDATE_LIKES,
