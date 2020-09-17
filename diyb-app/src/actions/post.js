@@ -86,7 +86,7 @@ export const unLike = (postID) => async (dispatch) => {
 // Delete post
 export const deletePost = (postID) => async (dispatch) => {
   try {
-    await axios.delete(`/api/posts/${postID}`);
+    await api.delete(`/posts/${postID}`);
 
     dispatch({
       type: POST_DELETED,
@@ -111,7 +111,7 @@ export const addPost = (formData) => async (dispatch) => {
   };
 
   try {
-    const res = await axios.post("/api/posts", formData, config);
+    const res = await api.post("/posts", formData, config);
 
     dispatch({
       type: POST_ADDED,
@@ -136,11 +136,7 @@ export const addComment = (postID, formData) => async (dispatch) => {
   };
 
   try {
-    const res = await axios.post(
-      `/api/posts/comment/${postID}`,
-      formData,
-      config
-    );
+    const res = await api.post(`/posts/comment/${postID}`, formData, config);
 
     dispatch({
       type: COMMENT_ADDED,
@@ -159,7 +155,7 @@ export const addComment = (postID, formData) => async (dispatch) => {
 // Delete comment
 export const deleteComment = (postID, commentID) => async (dispatch) => {
   try {
-    await axios.delete(`/api/posts/comment/${postID}/${commentID}`);
+    await api.delete(`/posts/comment/${postID}/${commentID}`);
 
     dispatch({
       type: COMMENT_DELETED,
@@ -177,7 +173,7 @@ export const deleteComment = (postID, commentID) => async (dispatch) => {
 
 export const addToBoard = (boardID, postID) => async (dispatch) => {
   try {
-    const res = await axios.put(`api/profile/boards/${boardID}/${postID}`);
+    const res = await api.put(`/profile/boards/${boardID}/${postID}`);
 
     dispatch({
       type: ADD_TO_BOARD,
@@ -201,7 +197,7 @@ export const addInstructions = (postID, formData) => async (dispatch) => {
       },
     };
 
-    const res = await axios.put(
+    const res = await api.put(
       `api/posts/${postID}/instructions`,
       formData,
       config
@@ -226,7 +222,7 @@ export const removeInstruction = (postID, instructionID) => async (
   dispatch
 ) => {
   try {
-    await axios.delete(`/api/posts/${postID}/instructions/${instructionID}`);
+    await api.delete(`/posts/${postID}/instructions/${instructionID}`);
 
     dispatch({
       type: REMOVE_INSTRUCTIONS,
