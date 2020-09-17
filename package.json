@@ -12,7 +12,7 @@
     "server": "nodemon server",
     "client": "npm start --prefix diyb-app",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true \"npm install --prefix diyb-app\" && \"npm run build --prefix diyb-app\""
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix diyb-app && npm run build --prefix diyb-app"
   },
   "repository": {
     "type": "git",
