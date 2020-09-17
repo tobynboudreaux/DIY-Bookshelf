@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../utils/api";
 import { setAlert } from "./alert";
 
 import {
@@ -15,7 +15,7 @@ import {
 // Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/profile/me");
+    const res = await api.get("/profile/me");
 
     dispatch({
       type: GET_PROFILE,
@@ -34,7 +34,7 @@ export const getProfiles = () => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await axios.get("/api/profile");
+    const res = await api.get("/profile");
 
     dispatch({
       type: GET_PROFILES,
@@ -53,7 +53,7 @@ export const getProfileById = (userID) => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await axios.get(`/api/profile/user/${userID}`);
+    const res = await api.get(`/profile/user/${userID}`);
 
     dispatch({
       type: GET_PROFILE,
@@ -78,7 +78,7 @@ export const createProfile = (formData, history, edit = false) => async (
       },
     };
 
-    const res = await axios.post("/api/profile", formData, config);
+    const res = await api.post("/profile", formData, config);
 
     dispatch({
       type: GET_PROFILE,
@@ -113,7 +113,7 @@ export const addBoard = (formData, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.put("/api/profile/boards", formData, config);
+    const res = await api.put("/profile/boards", formData, config);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -140,7 +140,7 @@ export const addBoard = (formData, history) => async (dispatch) => {
 // Delete Board
 export const deleteBoard = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/api/profile/boards/${id}`);
+    const res = await api.delete(`/profile/boards/${id}`);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -161,7 +161,7 @@ export const addPostToBoard = (boardID, postID, history) => async (
   dispatch
 ) => {
   try {
-    const res = await axios.put(`/api/profile/boards/${boardID}/${postID}`);
+    const res = await api.put(`/profile/boards/${boardID}/${postID}`);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -182,7 +182,7 @@ export const addPostToBoard = (boardID, postID, history) => async (
 // Delete Post from board
 export const deletePostFromBoard = (boardID, postID) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/api/profile/boards/${boardID}/${postID}`);
+    const res = await api.delete(`/profile/boards/${boardID}/${postID}`);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -202,7 +202,7 @@ export const deletePostFromBoard = (boardID, postID) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm("Are you sure? This can NOT be undone")) {
     try {
-      await axios.delete(`/api/profile`);
+      await api.delete(`/profile`);
 
       dispatch({
         type: CLEAR_PROFILE,
@@ -224,7 +224,7 @@ export const deleteAccount = () => async (dispatch) => {
 // Follow User
 export const followUser = (followeeID) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/follow/user/${followeeID}`);
+    const res = await api.put(`/follow/user/${followeeID}`);
 
     dispatch({
       type: FOLLOW_USER,
@@ -243,7 +243,7 @@ export const followUser = (followeeID) => async (dispatch) => {
 // Unfollow User
 export const unfollowUser = (followeeID) => async (dispatch) => {
   try {
-    const res = await axios.put(`/api/follow/unfollow/${followeeID}`);
+    const res = await api.put(`/follow/unfollow/${followeeID}`);
 
     dispatch({
       type: UNFOLLOW_USER,
