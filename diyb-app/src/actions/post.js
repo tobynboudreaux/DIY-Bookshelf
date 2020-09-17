@@ -198,7 +198,7 @@ export const addInstructions = (postID, formData) => async (dispatch) => {
     };
 
     const res = await api.put(
-      `api/posts/${postID}/instructions`,
+      `/posts/${postID}/instructions`,
       formData,
       config
     );
