@@ -2,7 +2,8 @@
   "name": "diyb-api",
   "version": "1.0.0",
   "engines": {
-    "node": "14.x"
+    "node": "14.2.0",
+    "npm": "6.14.7"
   },
   "description": "Social Network App that allows users to share DIY Recipes",
   "main": "server.js",
