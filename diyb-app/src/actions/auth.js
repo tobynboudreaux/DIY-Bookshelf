@@ -36,16 +36,10 @@ export const loadUser = () => async (dispatch) => {
 export const register = ({ name, email, password }) => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
 
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await api.post("/users", body, config);
+    const res = await api.post("/users", body);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -69,16 +63,10 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 export const login = (email, password) => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
 
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await api.post("/auth", body, config);
+    const res = await api.post("/auth", body);
 
     dispatch({
       type: LOGIN_SUCCESS,

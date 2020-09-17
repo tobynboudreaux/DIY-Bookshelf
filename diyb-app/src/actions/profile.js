@@ -72,13 +72,7 @@ export const createProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
   try {
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-
-    const res = await api.post("/profile", formData, config);
+    const res = await api.post("/profile", formData);
 
     dispatch({
       type: GET_PROFILE,
@@ -107,13 +101,7 @@ export const createProfile = (formData, history, edit = false) => async (
 // Add Album
 export const addBoard = (formData, history) => async (dispatch) => {
   try {
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-
-    const res = await api.put("/profile/boards", formData, config);
+    const res = await api.put("/profile/boards", formData);
 
     dispatch({
       type: UPDATE_PROFILE,

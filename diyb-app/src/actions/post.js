@@ -104,14 +104,8 @@ export const deletePost = (postID) => async (dispatch) => {
 
 // Add post
 export const addPost = (formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-
   try {
-    const res = await api.post("/posts", formData, config);
+    const res = await api.post("/posts", formData);
 
     dispatch({
       type: POST_ADDED,
@@ -129,14 +123,8 @@ export const addPost = (formData) => async (dispatch) => {
 
 // Add comment
 export const addComment = (postID, formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-
   try {
-    const res = await api.post(`/posts/comment/${postID}`, formData, config);
+    const res = await api.post(`/posts/comment/${postID}`, formData);
 
     dispatch({
       type: COMMENT_ADDED,
@@ -191,17 +179,7 @@ export const addToBoard = (boardID, postID) => async (dispatch) => {
 
 export const addInstructions = (postID, formData) => async (dispatch) => {
   try {
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-
-    const res = await api.put(
-      `/posts/${postID}/instructions`,
-      formData,
-      config
-    );
+    const res = await api.put(`/posts/${postID}/instructions`, formData);
 
     dispatch({
       type: ADD_INSTRUCTIONS,
