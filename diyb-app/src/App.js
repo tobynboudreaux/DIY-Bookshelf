@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Routes from "./components/routing/Routes";
+import { LOGOUT } from "./actions/types";
+
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -28,6 +30,7 @@ const App = () => {
       if (!localStorage.token) store.dispatch({ type: LOGOUT });
     });
   }, []);
+
   return (
     <Provider store={store}>
       <Router>
