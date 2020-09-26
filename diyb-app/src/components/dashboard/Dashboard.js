@@ -18,7 +18,7 @@ const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
-  profile: { profile, profiles, loading },
+  profile: { profile, profiles },
   getPosts,
   getProfiles,
   post: { posts },
