@@ -34,8 +34,6 @@ export const loadUser = () => async (dispatch) => {
 
 // Register User
 export const register = ({ name, email, password }) => async (dispatch) => {
-  await dispatch({ type: CLEAR_PROFILE });
-
   const body = JSON.stringify({ name, email, password });
 
   try {
@@ -61,8 +59,6 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
 // Login user
 export const login = (email, password) => async (dispatch) => {
-  await dispatch({ type: CLEAR_PROFILE });
-
   const body = JSON.stringify({ email, password });
 
   try {
