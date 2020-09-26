@@ -33,7 +33,9 @@ const Dashboard = ({
     return profile.user;
   });
 
-  return (
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <h1 className="large text-primary">Dashboard</h1>
       <div className="dashboard">
