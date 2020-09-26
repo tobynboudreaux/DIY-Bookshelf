@@ -24,7 +24,9 @@ const Dashboard = ({
   post: { posts },
 }) => {
   useEffect(() => {
-    getCurrentProfile() && getPosts() && getProfiles();
+    getCurrentProfile();
+    getPosts();
+    getProfiles();
   }, [getCurrentProfile, getPosts, getProfiles]);
   const [followerDisplay, toggleDisplay1] = useState(false);
   const [followeeDisplay, toggleDisplay2] = useState(false);
@@ -33,9 +35,7 @@ const Dashboard = ({
     return profile.user;
   });
 
-  return loading && profile === null ? (
-    <Spinner />
-  ) : (
+  return (
     <Fragment>
       <h1 className="large text-primary">Dashboard</h1>
       <div className="dashboard">
