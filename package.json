@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/tobynboudreaux/DIYB-API#readme",
   "dependencies": {
-    "@tensorflow/tfjs-node": "^2.3.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
     "cors": "^2.8.5",
